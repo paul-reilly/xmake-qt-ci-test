@@ -32,7 +32,7 @@ jobs:
             compress-archive -destinationpath ./gruben-windows-amd64.zip
 
       - name: Build and install
-        if: matrix.os == "ubuntu-latest"
+        if: matrix.os == 'ubuntu-latest'
         run: |
           xmake -rv
           xmake r
