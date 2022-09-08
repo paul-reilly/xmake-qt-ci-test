@@ -65,11 +65,11 @@ jobs:
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
           if: matrix.os == 'windows-latest'
-            asset_name: gruben-windows-amd64.zip
+            asset_name: gruben-windows-amd64
             asset_path: ./gruben-windows-amd64.zip
             asset_content_type: application/octet-stream
           if: matrix.os != 'windows-latest'
-            asset_name: gruben-linux-amd64.zip
+            asset_name: gruben-linux-amd64
             asset_path: ./gruben-linux-amd64.zip
             asset_content_type: application/octet-stream
 
