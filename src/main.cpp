@@ -3,7 +3,7 @@
 
 int main(int argc, char *argv[])
 {
-    auto qs = QString{ "Hello there, world!" };
+    auto qs = QString{ "Hello, world!" };
     printf("%s\n", qs.toStdString().c_str());
     return 0;
 }
