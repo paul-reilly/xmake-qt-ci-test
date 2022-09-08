@@ -1,13 +1,16 @@
 name: build
 
-on: push
+on:
+  push:
+    tags:
+      - "v*"
 
 jobs:
   build:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
-        version: [latest, branch@master, branch@dev]
+        version: [latest, branch@master]
 
     runs-on: ${{ matrix.os }}
 
@@ -22,3 +25,14 @@ jobs:
       - name: Run tests
         run: |
           xmake -rv
+          xmake r
+          xmake install --installdir=install
+
+      # now publish a Release on GitHub:
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            install/bin/*
+
