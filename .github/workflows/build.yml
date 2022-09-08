@@ -35,4 +35,5 @@ jobs:
           prerelease: false
           files: |
             install/bin/*
+            LICENSE.txt
 
