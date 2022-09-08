@@ -64,7 +64,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
-          asset_name: gruben-${{ matrix.config.os }}
-          asset_path: ./gruben*.zip
+          if: matrix.config.os == 'windows-latest'
+            asset_name: gruben-windows-amd64.zip
+            asset_path: ./gruben-windows-amd64.zip
+          if: matrix.config.os != 'windows-latest'
+            asset_name: gruben-linux-amd64.zip
+            asset_path: ./gruben-linux-amd64.zip
           asset_content_type: application/octet-stream
 
