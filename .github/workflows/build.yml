@@ -9,7 +9,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest, windows-latest]
         version: [latest, branch@master]
 
     runs-on: ${{ matrix.os }}
@@ -22,11 +22,23 @@ jobs:
       - uses: xmake-io/github-action-setup-xmake@v1
         with:
           xmake-version: latest
-      - name: Run tests
+      - name: Build and install
+        if: matrix.os == 'windows-latest'
         run: |
           xmake -rv
           xmake r
-          xmake install --installdir=install
+          xmake install --installdir=install-windows
+          gci -path ./install-windows -recurse |
+            compress-archive -destinationpath ./gruben-windows-amd64.zip
+
+      - name: Build and install
+        if: matrix.os == "ubuntu-latest"
+        run: |
+          xmake -rv
+          xmake r
+          xmake install --installdir=install-linux
+          zip -r gruben-linux-amd64.zip install-linux/*
+
 
       # now publish a Release on GitHub:
       - uses: "marvinpinto/action-automatic-releases@latest"
@@ -34,6 +46,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           files: |
-            install/bin/*
+            gruben-linux-amd64.zip
+            gruben-windows-amd64.zip
             LICENSE.txt
 
