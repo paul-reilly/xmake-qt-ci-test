@@ -1,0 +1,6 @@
+[
+{
+  "directory": "/home/dev/dev/sandpit/xmake-qt-actions",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-std=c++11", "-I/home/dev/dev/sandpit/xmake-qt-actions/build/.gens/xmake-qt-actions/linux/x86_64/release/rules/qt/ui", "-DQT_NO_DEBUG", "-DQT_DEPRECATED_WARNINGS", "-DQT_CORE_LIB", "-I", "/home/dev/Qt/5.15.2/gcc_64/include/QtCore", "-I", "/home/dev/Qt/5.15.2/gcc_64/include/QtCore/5.15.2", "-I", "/home/dev/Qt/5.15.2/gcc_64/include/QtCore/5.15.2/QtCore", "-I", "/home/dev/Qt/5.15.2/gcc_64/include", "-I", "/home/dev/Qt/5.15.2/gcc_64/mkspecs/linux-g++", "-DNDEBUG", "-fPIC", "-o", "build/.objs/xmake-qt-actions/linux/x86_64/release/src/main.cpp.o", "src/main.cpp"],
+  "file": "src/main.cpp"
+}]
