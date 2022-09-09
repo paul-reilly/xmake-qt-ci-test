@@ -42,7 +42,7 @@ jobs:
         with:
           xmake-version: latest
       - name: Build and install
-        if: matrix.os == 'windows-latest'
+        if: ${{ matrix.os }} == 'windows-latest'
         run: |
           xmake -rv
           xmake r
@@ -51,7 +51,7 @@ jobs:
             compress-archive -destinationpath ./gruben-windows-amd64.zip
 
       - name: Build and install
-        if: matrix.os == 'ubuntu-latest'
+        if: ${{ matrix.os }} == 'ubuntu-latest'
         run: |
           xmake -rv
           xmake r
@@ -64,7 +64,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
-          if: matrix.os == 'windows-latest'
+          if: ${{ matrix.os }} == 'windows-latest'
           asset_name: gruben-windows-amd64.zip
           asset_path: ./gruben-windows-amd64.zip
           asset_content_type: application/octet-stream
@@ -75,7 +75,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
-          if: matrix.os == 'ubuntu-latest'
+          if: ${{ matrix.os }} == 'ubuntu-latest'
           asset_name: gruben-linux-amd64.zip
           asset_path: ./gruben-linux-amd64.zip
           asset_content_type: application/octet-stream
